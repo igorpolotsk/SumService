@@ -23,14 +23,16 @@ dependencies {
     testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.5.2' 
 }
 
-jar {
-    baseName = 'sum_service'
-    manifest {
-        attributes 'Main-Class': 'SumService.App'
-    }
-    from { 
-        configurations.compile.collect { 
-            it.isDirectory() ? it : zipTree(it) 
+task installSumService {
+    jar {
+        baseName = 'sum_service'
+        manifest {
+            attributes 'Main-Class': 'SumService.App'
+        }
+        from { 
+            configurations.compile.collect { 
+                it.isDirectory() ? it : zipTree(it) 
+            }
         }
     }
 }
